@@ -60,10 +60,16 @@ def sell_product(sku, qty):
     data = load_data()
     for product in data["products"]:
         if product["sku"] == sku:
-            product["stock"] = product["stock"] - qty
-            if product["stock"] < 0:
-                product["stock"] = 0
-    save_data(data)
+            if qty <= 0:
+                print("Erro: quantidade inválida.")
+                return
+            if product["stock"] < qty:
+                print(f"Estoque insuficiente. Disponível: {product['stock']}")
+                return
+            product["stock"] -= qty
+            save_data(data)
+            return
+    print(f"Produto {sku} não encontrado.")
 
 def receive_product(sku, qty):
     data = load_data()
