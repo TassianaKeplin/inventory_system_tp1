@@ -1,14 +1,5 @@
-import json
-from config import DATA_FILE
+from utils.json_storage import load_data, save_data
 from utils.calculator import stock_value_duplicate, risk_level_from_value_again
-
-def load_data():
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def save_data(data):
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f)
 
 def calculate_restock_qty(product):
     qty = 0
