@@ -15,11 +15,15 @@ def main():
         if op == "1":
             print_inventory()
         elif op == "2":
-            sell_product("P1", 3)
-            print("Product sold")
+            sku = input("SKU do produto: ")
+            qty = int(input("Quantidade: "))
+            sell_product(sku, qty)
+            print("Venda registrada.")
         elif op == "3":
-            receive_product("P5", 4)
-            print("Product received")
+            sku = input("SKU do produto: ")
+            qty = int(input("Quantidade: "))
+            receive_product(sku, qty)
+            print("Recebimento registrado.")
         elif op == "4":
             print("RESTOCK:", restock_report())
         elif op == "5":
