@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "sku": "P1",
+      "name": "Notebook",
+      "stock": 4,
+      "category": "electronics",
+      "min": 5,
+      "price": 3500,
+      "supplier": "TechOne"
+    },
+    {
+      "sku": "P2",
+      "name": "Cadeira",
+      "stock": 10,
+      "category": "furniture",
+      "min": 3,
+      "price": 450,
+      "supplier": "MoveisSul"
+    },
+    {
+      "sku": "P3",
+      "name": "Mouse",
+      "stock": 40,
+      "category": "electronics",
+      "min": 10,
+      "price": 80,
+      "supplier": "TechOne"
+    },
+    {
+      "sku": "P4",
+      "name": "Mesa Industrial",
+      "stock": 2,
+      "category": "furniture",
+      "min": 4,
+      "price": 900,
+      "supplier": "MoveisSul"
+    },
+    {
+      "sku": "P5",
+      "name": "Luva de Proteção",
+      "stock": 0,
+      "category": "safety",
+      "min": 8,
+      "price": 35,
+      "supplier": "SafeEquip"
+    }
+  ]
+}
