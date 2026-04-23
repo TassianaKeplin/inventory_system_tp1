@@ -1,4 +1,4 @@
-from services.inventory_service import inventory_snapshot, calculate_restock_qty_again
+from services.inventory_service import inventory_snapshot
 
 def print_inventory():
     data = inventory_snapshot()
