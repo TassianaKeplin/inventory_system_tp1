@@ -1,12 +1,13 @@
 from utils.json_storage import load_data, save_data
 from utils.calculator import stock_value, risk_level_from_value
+from config import ELECTRONICS_MULTIPLIER, FURNITURE_EXTRA
 
 def calculate_restock_qty(product):
     qty = 0
 
     if product["category"] == "electronics":
         if product["stock"] < product["min"]:
-            qty = product["min"] * 2 - product["stock"]
+            qty = product["min"] * ELECTRONICS_MULTIPLIER - product["stock"]
         else:
             qty = 0
 
