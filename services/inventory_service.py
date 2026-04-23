@@ -1,5 +1,6 @@
 import json
 from config import DATA_FILE
+from config import ELECTRONICS_MULTIPLIER, FURNITURE_EXTRA
 from utils.calculator import stock_value_duplicate, risk_level_from_value_again
 
 def load_data():
@@ -15,13 +16,13 @@ def calculate_restock_qty(product):
 
     if product["category"] == "electronics":
         if product["stock"] < product["min"]:
-            qty = product["min"] * 2 - product["stock"]
+            qty = product["min"] * ELECTRONICS_MULTIPLIER - product["stock"]
         else:
             qty = 0
 
     elif product["category"] == "furniture":
         if product["stock"] < product["min"]:
-            qty = product["min"] + 2 - product["stock"]
+            qty = product["min"] + FURNITURE_EXTRA - product["stock"]
         else:
             qty = 0
 
