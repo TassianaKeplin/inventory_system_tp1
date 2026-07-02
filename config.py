@@ -1,4 +1,5 @@
 DATA_FILE = "data/products.json"
+MOVEMENTS_FILE = "data/movements.json"
 
 ELECTRONICS_MULTIPLIER = 2
 FURNITURE_EXTRA = 2
