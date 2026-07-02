@@ -1,4 +1,4 @@
-from services.report_service import print_inventory, restock_report, supplier_summary
+from services.report_service import print_inventory, restock_report, supplier_summary, movement_history
 from services.inventory_service import sell_product, receive_product
 
 def main():
@@ -8,7 +8,8 @@ def main():
         print("3 - Receive product")
         print("4 - Restock report")
         print("5 - Supplier summary")
-        print("6 - Exit")
+        print("6 - Movement history")
+        print("7 - Exit")
 
         op = input("Choose: ")
 
@@ -17,18 +18,21 @@ def main():
         elif op == "2":
             sku = input("SKU do produto: ")
             qty = int(input("Quantidade: "))
-            sell_product(sku, qty)
-            print("Venda registrada.")
+            if sell_product(sku, qty):
+                print("Venda registrada.")
         elif op == "3":
             sku = input("SKU do produto: ")
             qty = int(input("Quantidade: "))
-            receive_product(sku, qty)
-            print("Recebimento registrado.")
+            if receive_product(sku, qty):
+                print("Recebimento registrado.")
         elif op == "4":
             print("RESTOCK:", restock_report())
         elif op == "5":
             print("SUPPLIERS:", supplier_summary())
         elif op == "6":
+            sku = input("Filtrar por SKU (ENTER para todos): ")
+            print("MOVEMENTS:", movement_history(sku if sku else None))
+        elif op == "7":
             break
         else:
             print("Invalid option")
