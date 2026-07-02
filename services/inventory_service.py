@@ -1,6 +1,13 @@
-from utils.json_storage import load_data, save_data
+from utils.json_storage import load_data, save_data, load_movements, save_movements
 from utils.calculator import stock_value, risk_level_from_value
 from config import ELECTRONICS_MULTIPLIER, FURNITURE_EXTRA
+from models.movement import Movement
+
+def register_movement(sku, type, qty):
+    movements = load_movements()
+    movement = Movement(sku, type, qty)
+    movements["movements"].append(movement.to_dict())
+    save_movements(movements)
 
 def calculate_restock_qty(product):
     qty = 0
@@ -37,16 +44,24 @@ def sell_product(sku, qty):
                 return
             product["stock"] -= qty
             save_data(data)
+            register_movement(sku, "venda", qty)
             return
     print(f"Produto {sku} não encontrado.")
 
 def receive_product(sku, qty):
+    if qty <= 0:
+        print("Erro: quantidade inválida.")
+        return
+
     data = load_data()
     for product in data["products"]:
         if product["sku"] == sku:
             product["stock"] = product["stock"] + qty
-    save_data(data)
-
+            save_data(data)
+            register_movement(sku, "recebimento", qty)
+            return
+    print(f"Produto {sku} não encontrado.")
+    
 def inventory_snapshot():
     data = load_data()
     snapshot = []
