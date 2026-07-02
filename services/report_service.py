@@ -1,4 +1,5 @@
 from services.inventory_service import inventory_snapshot
+from utils.json_storage import load_movements
 
 def print_inventory():
     data = inventory_snapshot()
@@ -46,3 +47,12 @@ def supplier_summary():
             summary[item["supplier"]] = 0
         summary[item["supplier"]] = summary[item["supplier"]] + item["value"]
     return summary
+
+def movement_history(sku=None):
+    data = load_movements()
+    movements = data["movements"]
+
+    if sku:
+        movements = [m for m in movements if m["sku"] == sku]
+
+    return movements
