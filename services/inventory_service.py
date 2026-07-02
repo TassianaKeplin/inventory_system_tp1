@@ -38,20 +38,21 @@ def sell_product(sku, qty):
         if product["sku"] == sku:
             if qty <= 0:
                 print("Erro: quantidade inválida.")
-                return
+                return False
             if product["stock"] < qty:
                 print(f"Estoque insuficiente. Disponível: {product['stock']}")
-                return
+                return False
             product["stock"] -= qty
             save_data(data)
             register_movement(sku, "venda", qty)
-            return
+            return True
     print(f"Produto {sku} não encontrado.")
+    return False
 
 def receive_product(sku, qty):
     if qty <= 0:
         print("Erro: quantidade inválida.")
-        return
+        return False
 
     data = load_data()
     for product in data["products"]:
@@ -59,8 +60,9 @@ def receive_product(sku, qty):
             product["stock"] = product["stock"] + qty
             save_data(data)
             register_movement(sku, "recebimento", qty)
-            return
+            return True
     print(f"Produto {sku} não encontrado.")
+    return False
     
 def inventory_snapshot():
     data = load_data()
